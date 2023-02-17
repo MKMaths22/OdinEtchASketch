@@ -12,11 +12,23 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
 }
 
 .container {
     box-sizing: border-box;
-    width: 90vw;
-    height: 90vw;
+    width: 98vw;
+    height: 98vw;
     border: 10px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.05vw;
+    justify-content: space-around;
+    align-items: space-around;
+}
+
+.griddiv {
+    width: 5.5vw;
+    height: 5.5vw;
+    border: 0.2vw solid black;
 }
