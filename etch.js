@@ -48,8 +48,11 @@ function ohBoy()
     while (((num < 1) || (num > 100) || ((Math.floor(num) - num) !== 0)) && (i++ <= 4))
        {num = Number(prompt('Please choose a whole number between 2 and 100 inclusive.'))};
     
-    let allDivs = document.querySelectorAll('.griddiv');
-    allDivs.forEach((div) => div.remove());
+    let smallDivs = document.querySelectorAll('.griddiv');
+    smallDivs.forEach((div) => div.remove());
+    let columnDivs = document.querySelectorAll('.columndiv');
+    columnDivs.forEach((div) => div.remove());
+        
     makeGrid(num);
 }
 
