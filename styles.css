@@ -29,9 +29,20 @@ body {
 }
 
 .griddiv {
-    width: 5.5vw;
-    height: 5.5vw;
-    border: 0.2vw solid black;
+    min-width: 100%;
+    min-height: 1px;
+    border: 1px solid black;
+    flex: 1;
+}
+
+.columndiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    min-height: 100%;
+    min-width: 1px;
+    flex: 1;
+    border: 1px solid green;
 }
 
 .topbutton {
