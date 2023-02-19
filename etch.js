@@ -31,7 +31,7 @@ function makeGrid(num)
             }
         }
         let squares = document.querySelectorAll('.griddiv');
-        squares.forEach((div) => div.addEventListener('mouseover', () => {div.style.backgroundColor = 'red'}));
+        squares.forEach((div) => div.addEventListener('mouseover', () => {div.style.backgroundColor = 'red'; div.style.transform = "scale(1)"}));
     } 
 
 num = 16;
