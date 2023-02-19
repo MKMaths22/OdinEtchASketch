@@ -30,6 +30,7 @@ body {
 .griddiv {
     min-width: 100%;
     min-height: 1px;
+    background-color: rgb(255,255,255);
     /*border: 1px solid black;*/
     flex: 1;
 }

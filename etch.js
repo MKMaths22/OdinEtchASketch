@@ -3,16 +3,28 @@ let smallDiv;
 let columnDiv;
 let num;
 
-//function makeGrid(num) 
-//{
-    //for (let j = 1; j <= (num*num); j++)
-    //{
-    //smallDiv = document.createElement('div');
-    //smallDiv.classList.add('griddiv');
-   // container.appendChild(smallDiv);
-    
-   // }
-//}
+function nextNumberDown(x) {
+    if (x === 0) return 0;
+    x -= 25;
+    return Math.floor((Math.floor(2*x/51))*(51/2));
+    }
+
+function makeMoreBlack(div)
+    {
+    let rgb = getComputedStyle(div,null).getPropertyValue("background-color");
+    console.log(rgb);
+    rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+    var red=parseInt(rgb[1]);
+    var green=parseInt(rgb[2]);
+    var blue=parseInt(rgb[3]);
+    red = nextNumberDown(red);
+    green = nextNumberDown(green);
+    blue = nextNumberDown(blue);
+    div.style.backgroundColor = `rgb(${red},${green},${blue})`;
+    }
+       
+num = 16;
+makeGrid(num);
 
 function makeGrid(num)
    {
@@ -31,14 +43,21 @@ function makeGrid(num)
             }
         }
         let squares = document.querySelectorAll('.griddiv');
-        squares.forEach((div) => div.addEventListener('mouseover', () => {div.style.backgroundColor = 'red'; div.style.transform = "scale(1)"}));
+        //squares.forEach((div) => div.addEventListener('mouseover', () => {div.style.backgroundColor = randomColor()}));
+        squares.forEach((div) => div.addEventListener('mouseover', () => makeMoreBlack(div)));
     } 
 
-num = 16;
-makeGrid(num);
+    function randomColor() {
+        return `rgb(${Math.floor((Math.random())*128)}, ${Math.floor((Math.random())*128)},${Math.floor((Math.random())*128)})`;
+    }
+    
+    
+    let redValue = 255;
+    let blueValue = 0;
+    let greenValue = 0;
+
 
 const topButton = document.querySelector('.topbutton');
-console.log(topButton);
 topButton.addEventListener('click', ohBoy);
 
 function ohBoy() 
