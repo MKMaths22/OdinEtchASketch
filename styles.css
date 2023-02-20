@@ -5,6 +5,8 @@
 
 h1 {
  font-family: Verdana;
+ margin-top: 20px;
+ font-size: 40px;
 }
 
 body {
@@ -14,6 +16,15 @@ body {
     align-items: center;
     box-sizing: border-box;
     gap: 20px;
+    background: linear-gradient(90deg, #BADA55, rgb(36, 78, 71));
+}
+
+.buttondiv {
+   display: flex;
+   justify-content: center;
+   gap: min(70px,15vw);
+   padding-left: 5vw;
+   padding-right: 5vw;
 }
 
 .container {
@@ -45,7 +56,7 @@ body {
     /*border: 1px solid green;*/
 }
 
-.topbutton {
+button {
     font-size: 20px;
     padding: 10px;
     border: 5px solid black;

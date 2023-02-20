@@ -3,16 +3,18 @@ let smallDiv;
 let columnDiv;
 let num;
 
-function nextNumberDown(x) {
+function nextNumberDown(x) 
+{
     if (x === 0) return 0;
     x -= 25;
+    //reducing colour from 255 to 0 means going in steps of 25.5 on average. Reducing by 25 is an overestimate so the next line...
     return Math.floor((Math.floor(2*x/51))*(51/2));
-    }
+    //divides by 25.5 to round down to the integer that is the INTENDED one to multiply by 25.5, multiplies by 25.5 and rounds down.
+}
 
 function makeMoreBlack(div)
     {
     let rgb = getComputedStyle(div,null).getPropertyValue("background-color");
-    console.log(rgb);
     rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
     var red=parseInt(rgb[1]);
     var green=parseInt(rgb[2]);
@@ -26,7 +28,7 @@ function makeMoreBlack(div)
 num = 16;
 makeGrid(num);
 
-function makeGrid(num)
+function makeGrid(num,choice)
    {
     for (let i = 1; i <= num; i++)
        //for each value of i we make a column container that will contain num square divs
@@ -34,35 +36,36 @@ function makeGrid(num)
         columnDiv = document.createElement('div');
         columnDiv.classList.add('columndiv');
         // the column takes up the entire height of the container div and a nominal width
+        // flexbox in styles.css then expands the columns to collectively fill the full width of the container, 
+        // keeping their widths equal
         container.appendChild(columnDiv);
             for (let j = 1; j <= num; j++)
             {
             smallDiv = document.createElement('div');
             smallDiv.classList.add('griddiv');
             columnDiv.appendChild(smallDiv);
+            //simlarly the vertical flex direction within each column stacks the small divs to fill the full height.
+            //width 100 per cent for small divs means as the columns expand width-ways, so do the small divs! 
             }
         }
         let squares = document.querySelectorAll('.griddiv');
-        //squares.forEach((div) => div.addEventListener('mouseover', () => {div.style.backgroundColor = randomColor()}));
-        squares.forEach((div) => div.addEventListener('mouseover', () => makeMoreBlack(div)));
+        if (choice === 'shading') {squares.forEach((div) => div.addEventListener('mouseover', () => makeMoreBlack(div)));}
+        else {squares.forEach((div) => div.addEventListener('mouseover', () => randomColor(div)));}
     } 
 
-    function randomColor() {
-        return `rgb(${Math.floor((Math.random())*128)}, ${Math.floor((Math.random())*128)},${Math.floor((Math.random())*128)})`;
+    function randomColor(div) {
+        div.style.backgroundColor = `rgb(${Math.floor((Math.random())*256)}, ${Math.floor((Math.random())*256)},${Math.floor((Math.random())*256)})`;
     }
     
-    
-    let redValue = 255;
-    let blueValue = 0;
-    let greenValue = 0;
+const buttonShading = document.querySelector('.buttonshading');
+const buttonRandom = document.querySelector('.buttonrandom');
 
+buttonShading.addEventListener('click', () => ohBoy('shading'));
+buttonRandom.addEventListener('click', () => ohBoy('random'));
 
-const topButton = document.querySelector('.topbutton');
-topButton.addEventListener('click', ohBoy);
-
-function ohBoy() 
+function ohBoy(choice) 
 {
-    num = Number(prompt('Choose a side length for the new grid'));
+    num = Number(prompt('How many pixels on each side of the new grid?'));
     let i = 0;
     while (((num < 1) || (num > 100) || ((Math.floor(num) - num) !== 0)) && (i++ <= 4))
        {num = Number(prompt('Please choose a whole number between 2 and 100 inclusive.'))};
@@ -72,7 +75,7 @@ function ohBoy()
     let columnDivs = document.querySelectorAll('.columndiv');
     columnDivs.forEach((div) => div.remove());
         
-    makeGrid(num);
+    makeGrid(num,choice);
 }
 
     
