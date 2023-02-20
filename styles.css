@@ -43,6 +43,7 @@ body {
     min-height: 1px;
     background-color: rgb(255,255,255);
     /*border: 1px solid black;*/
+    /*borders were used to debug the divs*/
     flex: 1;
 }
 
@@ -54,6 +55,7 @@ body {
     min-width: 1px;
     flex: 1;
     /*border: 1px solid green;*/
+    /*borders used for debugging*/
 }
 
 button {
